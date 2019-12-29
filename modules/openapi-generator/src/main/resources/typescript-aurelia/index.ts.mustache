@@ -1,16 +1,28 @@
 {{>licenseInfo}}
+import { RequestBuilder } from 'aurelia-http-client';
+import { UserContext } from 'common';
+
 export { Api } from './Api';
 export { AuthStorage } from './AuthStorage';
 {{#apiInfo}}
 {{#apis}}
 {{#operations}}
-export { {{classname}} } from './{{classname}}';
+export * from './{{classname}}';
 {{/operations}}
 {{/apis}}
 {{/apiInfo}}
+export { OpenApiProvider } from './OpenApiProvider';
 export {
 {{#models}}
 {{#model}}  {{classname}},
 {{/model}}
 {{/models}}
 } from './models';
+
+Object.defineProperty(RequestBuilder.prototype, "withAuth", {
+  value: function withAuth() : RequestBuilder {
+      return this.withHeader('Authorization', UserContext.getCurrent().accessToken);
+  },
+  writable: false,
+  configurable: true
+});

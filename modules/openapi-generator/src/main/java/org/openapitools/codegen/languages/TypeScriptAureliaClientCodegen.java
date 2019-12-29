@@ -18,6 +18,7 @@
 package org.openapitools.codegen.languages;
 
 import org.openapitools.codegen.*;
+import org.openapitools.codegen.templating.mustache.CamelCaseLambda;
 
 import java.util.*;
 
@@ -80,6 +81,8 @@ public class TypeScriptAureliaClientCodegen extends AbstractTypeScriptClientCode
         supportingFiles.add(new SupportingFile("tsconfig.json.mustache", "", "tsconfig.json"));
         supportingFiles.add(new SupportingFile("tslint.json.mustache", "", "tslint.json"));
         supportingFiles.add(new SupportingFile("gitignore", "", ".gitignore"));
+        supportingFiles.add(new SupportingFile("OpenApiProvider.ts.mustache", "", "OpenApiProvider.ts"));
+        additionalProperties.put("camelcase", new CamelCaseLambda());
     }
 
     @Override

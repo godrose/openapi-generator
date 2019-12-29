@@ -1,7 +1,10 @@
 {{>licenseInfo}}
+import { autoinject } from 'aurelia-framework';
+
 /**
  * Class to storage authentication data
  */
+ @autoinject
 export class AuthStorage {
   private storage: Map<string, string>;
 

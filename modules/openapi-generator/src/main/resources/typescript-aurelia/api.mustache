@@ -23,7 +23,7 @@ export interface I{{operationIdCamelCase}}Params {
  * {{classname}} - API class{{#description}}
  * {{&description}}{{/description}}
  */
-@autoinject()
+@autoinject
 export class {{classname}} extends Api {
 
   /**
@@ -86,7 +86,8 @@ export class {{classname}} extends Api {
 {{#headerParams}}
       .withHeader('{{baseName}}', params['{{paramName}}']){{/headerParams}}
 {{#authMethods}}
-      // Authentication '{{name}}' required
+      // Authentication '{{name}}' is provided by the following line
+      .withAuth()
 {{#isApiKey}}
 {{#isKeyInHeader}}
       .withHeader('{{keyParamName}}', this.authStorage.get{{name}}())
@@ -109,5 +110,4 @@ export class {{classname}} extends Api {
 
 {{/operation}}
 }
-
 {{/operations}}
